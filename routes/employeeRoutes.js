@@ -25,13 +25,13 @@ router.post('/', (req, res) => {
         .catch((err) => res.json({ success: false}));
 });
 // delete a single employee from the database
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     Employees
      .findById(id)
      .then((employee) => employee.remove().then(() => res.json({ success: true })))
-     .catch((err) => res.json({ success: true }));
+     .catch((err) => res.json({ success: false }));
 });
 
 module.exports = router;
